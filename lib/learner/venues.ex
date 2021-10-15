@@ -8,4 +8,8 @@ defmodule Learner.Venues do
   defdelegate create_building(params),
     to: Venues.Building.Manager,
     as: :create
+    
+  defdelegate create_room(building, params),
+    to: Venues.Room.Manager,
+    as: :create
 end

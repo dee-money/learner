@@ -1,20 +1,20 @@
-defmodule Learner.Venues.Building do
+defmodule Learner.Venues.Room do
   use Ecto.Schema
   import Ecto.Changeset
   
-  alias Learner.Venues.Room
+  alias Learner.Venues.Building
 
-  schema "buildings" do
+  schema "rooms" do
     field :name, :string
     
-    has_many :rooms, Room
+    belongs_to :building, Building
 
     timestamps()
   end
 
   @doc false
-  def changeset(building, attrs) do
-    building
+  def changeset(room, attrs) do
+    room
     |> cast(attrs, [:name])
     |> validate_required([:name])
   end

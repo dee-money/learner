@@ -12,10 +12,18 @@ defmodule LearnerWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
   end
+  
+  scope "/api", LearnerWeb.Api, as: :api do
+    pipe_through :api
+    
+    resources("/buildings", BuildingController, only: [:index]) do
+      resources("/rooms", RoomController, only: [:index])  
+    end
+  end
 
   scope "/", LearnerWeb do
     pipe_through :browser
-
+  
     get "/", PageController, :index
   end
 
